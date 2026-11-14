@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Resultado da decifragem</title>
+</head>
+<body>
+  <main>
+    <h1>Decifragem concluida</h1>
+
+    <p><strong>SHA-256 do original (calculado antes de cifrar):</strong><br>
+      <code>{{ r.sha256_original }}</code></p>
+    <p><strong>SHA-256 do arquivo restaurado:</strong><br>
+      <code>{{ r.sha256_restaurado }}</code></p>
+
+    {% if r.confere %}
+      <p style="color: #137333;"><strong>Os hashes conferem: o arquivo foi restaurado sem alteracoes.</strong></p>
+    {% else %}
+      <p style="color: #b00020;"><strong>Os hashes NAO conferem.</strong></p>
+    {% endif %}
+
+    <p><a href="data:application/octet-stream;base64,{{ conteudo_b64 }}" download="arquivo_restaurado">Baixar arquivo restaurado</a></p>
+    <p><a href="/">Voltar</a></p>
+  </main>
+</body>
+</html>
