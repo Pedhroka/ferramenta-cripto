@@ -1,13 +1,14 @@
-# Chaves (privadas e públicas) e arquivos de teste da criptografia
+# Chaves (privadas e publicas) e arquivos de teste da criptografia
 *.pem
 *.key
 *.bin
 *.enc
 *.sig
+*.zip
 chave_aes*
 mensagem*
 
-# Arquivos enviados pelos usuários da aplicação
+# Arquivos enviados pelos usuarios da aplicacao
 uploads/
 
 # Arquivos gerados pelo Python
