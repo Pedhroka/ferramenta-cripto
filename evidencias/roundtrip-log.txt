@@ -1,0 +1,45 @@
+=== Servidor: python app.py (127.0.0.1:5000) ===
+=== 1) Pagina inicial ===
+GET / -> HTTP 200
+=== 2) Cifrar teste.txt com publica_grupo.pem ===
+POST /cifrar -> HTTP 200
+Conteudo do pacote:
+Archive:  /c/Users/pedro/atividade16/roundtrip/pacote_cifrado.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+      112  2026-11-13 22:15   mensagem.enc
+      256  2026-11-13 22:15   chave_aes.enc
+       65  2026-11-13 22:15   sha256_original.txt
+---------                     -------
+      433                     3 files
+=== 3) Decifrar com privada_grupo.pem ===
+POST /decifrar -> HTTP 200
+SHA-256 na tela: 63c7890524412c9847203aaeefca7ee1e79b380f61cb4d52c80586b75614d04d
+SHA-256 na tela: 63c7890524412c9847203aaeefca7ee1e79b380f61cb4d52c80586b75614d04d
+=== 4) Conferencia byte a byte ===
+IDENTICO byte a byte ao original
+63c7890524412c9847203aaeefca7ee1e79b380f61cb4d52c80586b75614d04d */c/Users/pedro/atividade16/roundtrip/teste.txt
+63c7890524412c9847203aaeefca7ee1e79b380f61cb4d52c80586b75614d04d */c/Users/pedro/atividade16/roundtrip/restaurado.txt
+=== Log do servidor ===
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+127.0.0.1 - - [13/Nov/2026 22:15:05] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2026 22:15:05] "POST /cifrar HTTP/1.1" 200 -
+127.0.0.1 - - [13/Nov/2026 22:15:05] "POST /decifrar HTTP/1.1" 200 -
+=== 5) Testes automatizados ===
+============================= test session starts =============================
+platform win32 -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0 -- E:\Projetos Orca\Atividades_da_Faculdade\ferramenta-cripto\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Projetos Orca\Atividades_da_Faculdade\ferramenta-cripto
+collecting ... collected 5 items
+
+tests/test_roundtrip.py::test_roundtrip_texto_pequeno PASSED             [ 20%]
+tests/test_roundtrip.py::test_roundtrip_arquivo_grande PASSED            [ 40%]
+tests/test_roundtrip.py::test_chave_privada_errada_falha PASSED          [ 60%]
+tests/test_roundtrip.py::test_pacote_invalido_falha PASSED               [ 80%]
+tests/test_roundtrip.py::test_rota_web_roundtrip PASSED                  [100%]
+
+============================== 5 passed in 0.88s ==============================
